@@ -3,27 +3,18 @@ package org.blz.moodanalyser;
 
 public class MoodAnalyser {
 
-    public static String message = "";
-
-    public MoodAnalyser() {
-    }
-
-    public MoodAnalyser(String message) {
-        this.message = message;
-    }
-
-    public static String analyseMood(){
+    public static String analyseMood(String message) throws MoodAnalysisException {
         try {
-            if (message.contains("any") || message.contains("ANY") || message.contains("Any")) {
+            if (message.contains("any") || message.contains("ANY") || message.contains("Any")||message.contains("happy") || message.contains("HAPPY") || message.contains("Happy")) {
                 return "HAPPY";
-            }
-            else if (message.contains("SAD") || message.contains("Sad") || message.contains("sad")) {
+            } else if (message.contains("SAD") || message.contains("Sad") || message.contains("sad")) {
                 return "SAD";
             } else
                 return "HAPPY";
-        } catch (NullPointerException e) {
-            return "HAPPY";
+        } catch (NullPointerException exception) {
+            throw new MoodAnalysisException("Empty Mood");
         }
 
     }
 }
+
